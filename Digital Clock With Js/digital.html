@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #363636;
+        }
+
+        .digital {
+            width: 400px;
+            height: 150px;
+            box-shadow: 8px 8px 16px #3f3f3f,
+                -8px -8px 16px #3f3f3f;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .digital span {
+            color: #ffff;
+            z-index: 1;
+            font-size: 60px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            letter-spacing: 5px;
+            display: inline-block;
+            text-align: center;
+        }
+
+
+
+        .digital::before {
+            content: "";
+            background-image: conic-gradient(#00009e 20deg,
+                    transparent 120deg);
+
+            width: 150%;
+            height: 150%;
+            position: absolute;
+            animation: rotate 2s linear infinite;
+        }
+
+        .digital::after {
+            content: "";
+            width: 390px;
+            height: 140px;
+            background: #101010;
+            position: absolute;
+            border-radius: 10px;
+            box-shadow: inset 20px 20px 20px #0000008c;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        .left-box {
+            content: '';
+            width: 20vh;
+            height: 20vh;
+            background: #f41b75;
+            border-radius: 10px;
+            position: absolute;
+            left: 35%;
+            top: 33%;
+            z-index: -1;
+            box-shadow: 9px 9px 18px #1a1a1a,
+                -9px -9px 18px #6b012d;
+        }
+
+        .right-box {
+            content: '';
+            width: 20vh;
+            height: 20vh;
+            background: #419aff;
+            border-radius: 10px;
+            position: absolute;
+            left: 56%;
+            top: 47%;
+            z-index: -1;
+            box-shadow: 9px 9px 18px #0064d6,
+                -9px -9px 18px #1a1a1a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="right-box"></div>
+    <div class="left-box"></div>
+    <div class="digital">
+        <span id="hrs">00</span>
+        <span>:</span>
+        <span id="min">00</span>
+        <span>:</span>
+        <span id="sec">00</span>
+    </div>
+    <script>
+        let hrs = document.getElementById("hrs")
+        let min = document.getElementById("min")
+        let sec = document.getElementById("sec")
+
+        let time = new Date();
+
+        hrs.innerHTML = time.getHours();
+        min.innerHTML = time.getMinutes();
+        sec.innerHTML = time.getSeconds();
+    </script>
+
+</body>
+
+</html>
